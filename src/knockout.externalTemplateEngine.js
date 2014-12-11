@@ -2,7 +2,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
 {
     this.templateId = templateName;
     this.loaded = false;
-    this.template = ko.observable("Loading...");
+    this.template = ko.observable();
     this.data = {};
 
     this.data = function(key, value) {
@@ -24,7 +24,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
                 self.template(templateHtml);
                 self.loaded = true;
             })
-            .catch(function(error){
+            .catch(function(request, error){
                 self.loaded = true;
                 console.error(error);
                 self.template(error);
