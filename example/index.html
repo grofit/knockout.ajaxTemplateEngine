@@ -12,6 +12,7 @@
 <div id="dom-template-output" data-bind="template: 'dom-template'"></div>
 <div id="external-template-output" data-bind="template: { name: 'external-template', data: value } "></div>
 <div id="other-template-output" data-bind="template: { name: 'some-other-template', data: value2, location: 'other-directory', suffix: '.html' } "></div>
+<div id="foreach-template-output" data-bind="template: { name: 'foreach', foreach: dummyPosts }"></div>
 
 <script type="text/html" id="dom-template">
 	<h2>Hello! I am a DOM template</h2>
@@ -23,6 +24,12 @@
 	function ViewModel() {
 		this.value = ko.observable(20);
 		this.value2 = ko.observable(40);
+
+		this.dummyPosts = ko.observableArray([
+			{ title: ko.observable("SOME TITLE 1"), content: ko.observable("This is a foreach element, the first in the list") },
+			{ title: ko.observable("SOME OTHER TITLE"), content: ko.observable("This is a foreach element, the second in the list") },
+			{ title: ko.observable("Something Final"), content: ko.observable("This is a the last foreach element") }
+		]);
 	}
 
 	ko.applyBindings(new ViewModel());

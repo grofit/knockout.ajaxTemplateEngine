@@ -9,7 +9,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
 
     this.templateId = templateName;
     this.status = status.notLoaded;
-    this.template = ko.observable("");
+    this.template = ko.observable();
     this.data = {};
 
     this.data = function(key, value) {
@@ -20,7 +20,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
     this.text = function(value) {
         if (this.status == status.notLoaded) { this.getTemplate(); }
         if (arguments.length === 0) { return this.template(); }
-        this.template(arguments[0]);
+        this.template(value);
     };
 
     this.getTemplate = function() {
@@ -32,9 +32,9 @@ function ExternalTemplateSource(templateName, templateLocator, options)
                 self.template(templateHtml);
                 self.status = status.loaded;
             })
-            .catch(function(request, error){
-                self.loaded = status.failedToLoad;
-                self.data("error", error)
+            .catch(function(error){
+                self.status = status.failedToLoad;
+                self.data("error", error);
                 console.error(error);
                 self.template("");
             });
@@ -54,7 +54,7 @@ function DefaultTemplateLocator() {
                 if(request.status == 200) { resolve(request.responseText); }
                 else { reject(request, request.statusText); }
             };
-            request.onerror = function(event) { reject(request, event.error); };
+            request.onerror = function(event) { reject(event.error); };
             request.send();
         });
     };
