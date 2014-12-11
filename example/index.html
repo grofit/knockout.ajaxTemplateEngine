@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>External Template Test</title>
+</head>
+
+<body>
+<h1>Loading templates!</h1>
+
+<div id="dom-template-output" data-bind="template: 'dom-template'"></div>
+<div id="external-template-output" data-bind="template: { name: 'external-template', data: value } "></div>
+<div id="other-template-output" data-bind="template: { name: 'some-other-template', data: value2, location: 'other-directory', suffix: '.tmpl' } "></div>
+
+<script type="text/html" id="dom-template">
+	<h2>Hello! I am a DOM template</h2>
+</script>
+
+<script type="text/javascript" src="../libs/knockout-3.2.0.min.js"></script>
+<script type="text/javascript" src="../src/knockout.externalTemplateEngine.js"></script>
+<script type="text/javascript">
+	function ViewModel() {
+		this.value = ko.observable(20);
+		this.value2 = ko.observable(40);
+	}
+
+	ko.applyBindings(new ViewModel());
+</script>
+</body>
+</html>
