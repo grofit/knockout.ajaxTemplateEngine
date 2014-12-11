@@ -2,7 +2,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
 {
     this.templateId = templateName;
     this.loaded = false;
-    this.template = ko.observable();
+    this.template = ko.observable("");
     this.data = {};
 
     this.data = function(key, value) {
