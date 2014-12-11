@@ -1,7 +1,14 @@
 function ExternalTemplateSource(templateName, templateLocator, options)
 {
+    var status = {
+        notLoaded: 1,
+        loading: 2,
+        failedToLoad: 3,
+        loaded: 4
+    };
+
     this.templateId = templateName;
-    this.loaded = false;
+    this.status = status.notLoaded;
     this.template = ko.observable("");
     this.data = {};
 
@@ -11,21 +18,23 @@ function ExternalTemplateSource(templateName, templateLocator, options)
     };
 
     this.text = function(value) {
-        if (!this.loaded) { this.getTemplate(); }
+        if (this.status == status.notLoaded) { this.getTemplate(); }
         if (arguments.length === 0) { return this.template(); }
         this.template(arguments[0]);
     };
 
     this.getTemplate = function() {
         var self = this;
+        this.status = status.loading;
         templateLocator
             .getTemplateHtml(templateName, options)
             .then(function(templateHtml) {
                 self.template(templateHtml);
-                self.loaded = true;
+                self.status = status.loaded;
             })
             .catch(function(request, error){
-                self.loaded = true;
+                self.loaded = status.failedToLoad;
+                self.data("error", error)
                 console.error(error);
                 self.template("");
             });
