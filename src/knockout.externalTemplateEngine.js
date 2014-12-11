@@ -27,7 +27,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
             .catch(function(request, error){
                 self.loaded = true;
                 console.error(error);
-                self.template(error);
+                self.template("");
             });
     };
 }
@@ -43,9 +43,9 @@ function DefaultTemplateLocator() {
             request.open("GET", url, true);
             request.onload = function() {
                 if(request.status == 200) { resolve(request.responseText); }
-                else { reject(request, request.responseText); }
+                else { reject(request, request.statusText); }
             };
-            request.onerror = function(error) { reject(request, error); };
+            request.onerror = function(event) { reject(request, event.error); };
             request.send();
         });
     };
