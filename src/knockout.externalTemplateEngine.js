@@ -9,7 +9,7 @@ function ExternalTemplateSource(templateName, templateLocator, options)
 
     this.templateId = templateName;
     this.status = status.notLoaded;
-    this.template = ko.observable();
+    this.template = ko.observable(" ");
     this.data = {};
 
     this.data = function(key, value) {
@@ -52,7 +52,7 @@ function DefaultTemplateLocator() {
             request.open("GET", url, true);
             request.onload = function() {
                 if(request.status == 200) { resolve(request.responseText); }
-                else { reject(request, request.statusText); }
+                else { reject(request.statusText); }
             };
             request.onerror = function(event) { reject(event.error); };
             request.send();
