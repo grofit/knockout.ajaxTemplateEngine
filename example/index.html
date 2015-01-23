@@ -13,6 +13,12 @@
 <div id="external-template-output" data-bind="template: { name: 'external-template', data: value } "></div>
 <div id="other-template-output" data-bind="template: { name: 'some-other-template', data: value2, location: 'other-directory', suffix: '.html' } "></div>
 <div id="foreach-template-output" data-bind="template: { name: 'foreach', foreach: dummyPosts }"></div>
+<div id="nested-template-output" data-bind="template: { name: 'nested' }"></div>
+<div id="virtual-nested-template">
+	<h2>Loading nested templates through virtual templates</h2>
+	<!-- ko template: { name: 'nested' } --> 
+	<!-- /ko -->
+</div>
 
 <script type="text/html" id="dom-template">
 	<h2>Hello! I am a DOM template</h2>
