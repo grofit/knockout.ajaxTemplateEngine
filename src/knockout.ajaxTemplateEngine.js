@@ -14,7 +14,7 @@
 }
 (function (ko) {
 
-    function ExternalTemplateSource(templateName, templateLocator, options)
+    function AjaxTemplateSource(templateName, templateLocator, options)
     {
         var status = {
             notLoaded: 1,
@@ -87,7 +87,7 @@
         }
     }
 
-    function ExternalTemplateEngine() {
+    function AjaxTemplateEngine() {
         this.templates = {};
         this.templateLocator = new DefaultTemplateLocator();
 
@@ -99,7 +99,7 @@
                 if (elem) { return new ko.templateSources.domElement(elem); }
 
                 if(!self.templates[template])
-                { self.templates[template] = new ko.templateSources.externalTemplateSource(template, this.templateLocator, options); }
+                { self.templates[template] = new ko.templateSources.ajaxTemplateSource(template, this.templateLocator, options); }
 
                 return self.templates[template];
             }
@@ -113,8 +113,8 @@
         };
     }
 
-    ko.templateSources.externalTemplateSource = ExternalTemplateSource;
-    ko.externalTemplateEngine = new ko.utils.extend(new ko.nativeTemplateEngine(), new ExternalTemplateEngine());
-    ko.setTemplateEngine(ko.externalTemplateEngine);
+    ko.templateSources.ajaxTemplateSource = AjaxTemplateSource;
+    ko.ajaxTemplateEngine = new ko.utils.extend(new ko.nativeTemplateEngine(), new AjaxTemplateEngine());
+    ko.setTemplateEngine(ko.ajaxTemplateEngine);
 
 }));

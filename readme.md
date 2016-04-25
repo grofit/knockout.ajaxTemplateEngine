@@ -1,4 +1,4 @@
-# Knockout.externalTemplateEngine
+# Knockout.ajaxTemplateEngine
 
 A bare bones implementation to allow requesting of templates via ajax.
 
@@ -27,8 +27,8 @@ entirely replaced, but the default will let you set your template directory/suff
 
 ```
 // Include knockout and knockout.externalTemplateEngine
-ko.externalTemplateEngine.templateLocator.defaultTemplateLocation = "external-templates";
-ko.externalTemplateEngine.templateLocator.defaultTemplateSuffix = ".template.html";
+ko.ajaxTemplateEngine.templateLocator.defaultTemplateLocation = "external-templates";
+ko.ajaxTemplateEngine.templateLocator.defaultTemplateSuffix = ".template.html";
 ```
 
 Or set them for each template:
@@ -86,10 +86,10 @@ If you do need to make your own implementation of the above object then you shou
 with it like so:
 
 ```
-ko.externalTemplateEngine.templateLocator = new MyTemplateLocator();
+ko.ajaxTemplateEngine.templateLocator = new MyTemplateLocator();
 ```
 
 Not much more too it really...
 
 Here is an example of what it does and how to use it.
-[View Example](https://rawgithub.com/grofit/knockout.externalTemplateEngine/master/example/index.html)
+[View Example](https://rawgithub.com/grofit/knockout.ajaxTemplateEngine/master/example/index.html)

@@ -1,7 +1,7 @@
 {
-  "name": "knockout.externalTemplateEngine",
-  "version": "0.0.1",
-  "main": "src/knockout.externalTemplateEngine",
+  "name": "knockout.ajaxTemplateEngine",
+  "version": "0.1.0",
+  "main": "src/knockout.ajaxTemplateEngine",
   "peerDependencies": {
     "knockout": "^3.4.0"
   }
