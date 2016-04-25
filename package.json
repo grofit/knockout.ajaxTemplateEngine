@@ -1,0 +1,8 @@
+{
+  "name": "knockout.externalTemplateEngine",
+  "version": "0.0.1",
+  "main": "src/knockout.externalTemplateEngine",
+  "peerDependencies": {
+    "knockout": "^3.4.0"
+  }
+}
